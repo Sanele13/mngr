@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mngr_node:
+    build:
+      ./
+    container_name: mngr_node
+    ports:
+      - 80:80
+      - 4200:4200
+    restart: always
+    volumes:
+      - ${HOME}/Documents/Projects/mngr:/usr/src/mngr
+    networks:
+      default:
+         ipv4_address: ${MNGR_BACKEND_IP}
+
+networks:
+  default:
+    external:
+      name: ${NETWORK_NAME}
+
+

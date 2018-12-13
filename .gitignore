@@ -1,0 +1,5 @@
+\.idea/
+mngr-frontend/node_modules
+node/app/node_modules
+angular/npm-debug.log
+node/app/npm-debug.log

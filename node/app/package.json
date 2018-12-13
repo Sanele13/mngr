@@ -1,0 +1,12 @@
+{
+  "name":"mngr",
+  "url": "http://mngr.com",
+  "email": "sanele.mpangalala@edgelearningmedia.com",
+  "dependencies": {
+    "express": "^4.16.3",
+    "http": "0.0.0"
+  },
+  "scripts": {
+    "start": "node main.js"
+  }
+}
