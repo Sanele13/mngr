@@ -1,15 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {TopbarComponent} from "./topbar/topbar.component";
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import {BoardComponent} from "./board/board.component";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DragDropModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        TopbarComponent,
+        BoardComponent
       ],
     }).compileComponents();
   }));
@@ -26,10 +32,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('mngr-frontend');
   });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to mngr-frontend!');
-  });
 });

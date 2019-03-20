@@ -1,0 +1,31 @@
+<div class="example-container">
+  <h2>To do</h2>
+
+  <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[inProgress]" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+  </div>
+  <input matInput style="width:70%" placeholder="Enter Task" #taskField>
+  <button mat-button (click)="addTask()">Add task</button>
+</div>
+
+<div class="example-container">
+  <h2>In Progress</h2>
+
+  <div cdkDropList #inProgress="cdkDropList" [cdkDropListData]="in_progress" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of in_progress" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[inProgress]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+  </div>
+</div>
