@@ -11,13 +11,15 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import { BoardComponent } from './board/board.component'
+import { BoardComponent } from './board/board.component';
+import { FormComponent } from './components/form/form.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     TopbarComponent,
-    BoardComponent
+    BoardComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,10 @@ import {CdkDragDrop, moveItemInArray,transferArrayItem} from "@angular/cdk/drag-
 })
 export class BoardComponent implements OnInit {
   @ViewChild('taskField') taskField: ElementRef;
+  @ViewChild('toDoColumn') toDoColumn: ElementRef;
+  @ViewChild('inProgressColumn') inProgressColumn: ElementRef;
+  @ViewChild('doneColumn') doneColumn: ElementRef;
+
   task: string;
   todo = [
     'Get to work',
