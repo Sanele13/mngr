@@ -14,6 +14,9 @@ import {MatInputModule} from "@angular/material/input";
 import { BoardComponent } from './board/board.component';
 import { FormComponent } from './components/form/form.component'
 
+import {HttpClientModule} from "@angular/common/http";
+import {HttpService} from "./services/http.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +33,10 @@ import { FormComponent } from './components/form/form.component'
     MatTabsModule,
     MatInputModule,
     MatFormFieldModule,
-    DragDropModule
+    DragDropModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
