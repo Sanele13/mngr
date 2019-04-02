@@ -54,7 +54,6 @@ app.post('/register',(request, result) => {
     var connection = mysql.createConnection(db_creds);
     connection.connect((err)=>{
         if(err){
-            console.error(err);
             result.send({message:'there-was-an-error'});
         }else{
             if(allIsWell){
