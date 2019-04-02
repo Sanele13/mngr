@@ -28,19 +28,19 @@ describe('BoardComponent', () => {
   });
 
   it('should have a To Do column',() => {
-    let fixture = TestBed.createComponent(BoardComponent);
+    //let fixture = TestBed.createComponent(BoardComponent);
     let board = fixture.debugElement.componentInstance;
     expect(board.todo).toBeDefined();
   });
 
   it('should have a In Progress column',() => {
-    let fixture = TestBed.createComponent(BoardComponent);
+    //let fixture = TestBed.createComponent(BoardComponent);
     let board = fixture.debugElement.componentInstance;
     expect(board.in_progress).toBeDefined();
   });
 
   it('should have a Done column',() => {
-    let fixture = TestBed.createComponent(BoardComponent);
+    //let fixture = TestBed.createComponent(BoardComponent);
     let board = fixture.debugElement.componentInstance;
     expect(board.done).toBeDefined();
   });
@@ -65,7 +65,7 @@ describe('A task', () => {
   });
 
   it('should be dropped in To Do when it is created ',() => {
-    let fixture = TestBed.createComponent(BoardComponent);
+    //let fixture = TestBed.createComponent(BoardComponent);
     let board = fixture.debugElement.componentInstance;
 
     let task = board.taskField.nativeElement;
