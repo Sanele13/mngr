@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.get('/', function(request,result){
     result.write(path.join(__dirname, '../../angular/mngr-frontend/dist'));
     result.end();
-    //result.sendfile('index.html');
 });
 
 app.post('/login',(request, result) => {
@@ -31,9 +30,17 @@ app.post('/login',(request, result) => {
     var password = request.body.password;
 
     //check if user exist
-
-    //return message
-    result.send({message:'Your email address is '+email});
+    var connection = mysql.createConnection(db_creds);
+    connection.connect((err)=>{
+       if(err){
+           result.send({message:'there-was-an-error'});
+       }else{
+           connection.query('SELECT user_id,first_name,last_name,email FROM users WHERE email = "'+email+'" and password = "'+password+'"',null,(error,results) => {
+               console.log(results);
+               result.send({message:'success',user_data:results});
+           });
+       }
+    });
 });
 
 app.post('/register',(request, result) => {
