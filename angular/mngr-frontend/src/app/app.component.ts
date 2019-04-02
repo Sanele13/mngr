@@ -8,10 +8,13 @@ import {HttpService} from "./services/http.service";
 })
 export class AppComponent {
   title = 'mngr-frontend';
-  isLoginForm = true;
+  isLoginForm = false;
   isRegisterForm = false;
+  loggedIn = true;
 
+  @ViewChild('loginForm') loginForm: ElementRef;
   @ViewChild('registrationForm') regForm: ElementRef;
+
 
   constructor(
     private httpService: HttpService
@@ -19,8 +22,17 @@ export class AppComponent {
 
   login(e) {
     e.preventDefault();
-    this.httpService.post('/login',{email:'sanele@rodcode.co.za',password:'1234'}).subscribe( result => {
-      console.log(result);
+    let form = this.loginForm.nativeElement;
+    //console.log()
+    let user_data = {
+      email:form.username.value,
+      password:form.password.value
+    }
+    this.httpService.post('/login',user_data).subscribe( result => {
+      if(result['message']=='success'){
+        this.isLoginForm = false;
+        this.loggedIn = true;
+      }
     });
   }
 
@@ -28,7 +40,7 @@ export class AppComponent {
     e.preventDefault();
 
     let form = this.regForm.nativeElement;
-
+    //console.log(form.email);
     let user_data = {
       first_name: form.first_name.value,
       last_name: form.last_name.value,

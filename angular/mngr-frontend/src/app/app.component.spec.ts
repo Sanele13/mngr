@@ -4,19 +4,25 @@ import { AppComponent } from './app.component';
 import {TopbarComponent} from "./topbar/topbar.component";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {BoardComponent} from "./board/board.component";
+import {HttpService} from "./services/http.service";
+import {HttpClientModule} from "@angular/common/http";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DragDropModule
+        DragDropModule,
+        HttpClientModule
       ],
       declarations: [
         AppComponent,
         TopbarComponent,
         BoardComponent
       ],
+      providers:[
+        HttpService
+      ]
     }).compileComponents();
   }));
 

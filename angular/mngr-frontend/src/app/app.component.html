@@ -1,4 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<app-topbar></app-topbar>
 <div *ngIf="isLoginForm" class="login-form-container container col-sm-8 col-md-6">
   <form method="post" (submit)="login($event)" #loginForm>
     <div class="form-group">
@@ -35,21 +35,8 @@
       <label for="conf_pwd">Confirm Password:</label>
       <input id="conf_pwd" type="password" class="form-control">
     </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" id="role_student" name="role" value="student" checked>
-      <label for="role_student" class="form-check-label">Student</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" id="role_teacher" name="role" value="teacher">
-      <label for="role_teacher" class="form-check-label">Teacher</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" id="role_tutor" name="role" value="tutor">
-      <label for="role_tutor" class="form-check-label">Tutor</label>
-    </div>
     <button type="submit" class="btn btn-success">Register</button>
   </form>
 </div>
-<!--<app-topbar></app-topbar>-->
-<!--<app-board></app-board>-->
+<app-board *ngIf="loggedIn"></app-board>
 <!--<router-outlet></router-outlet>-->
