@@ -12,25 +12,11 @@ export class BoardComponent implements OnInit {
   @ViewChild('doneColumn') doneColumn: ElementRef;
 
   task: string;
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep',
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  todo = [];
 
-  in_progress = [
+  in_progress = [];
 
-  ];
-
-  done = [
-
-  ];
+  done = [];
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -45,9 +31,8 @@ export class BoardComponent implements OnInit {
 
   addTask(){
     var task = this.taskField.nativeElement.value;
-    //console.log(task);
+
     if(task!==null){
-      //let task = task.value;
       this.todo.push(task);
     }
   }
