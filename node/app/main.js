@@ -33,11 +33,14 @@ app.post('/login',(request, result) => {
 
     connection.connect((err)=>{
        if(err){
+           throw err;
            result.send({message:'there-was-an-error'});
        }else{
            connection.query('SELECT user_id,first_name,last_name,email FROM users WHERE email = "'+email+'" and password = "'+password+'"',null,(error,results) => {
-               console.log(results);
-               result.send({message:'success',user_data:results});
+
+               connection.query(`SELECT * FROM tasks WHERE assignee_email = "${email}"`,null,(task_err,tasks) => {
+                   result.send({message:'success',tasks:tasks})
+               });
            });
        }
     });
@@ -79,9 +82,10 @@ app.post('/task/create',(request,response) => {
     const assignee_email = request.body.assignee.email;
     const task = request.body.task;
     const description = request.body.description;
+    const status = request.body.status;
     const priority = request.body.priority;
     const created_at = request.body.created_at;
-    connection.query(`INSERT INTO tasks(creator,creator_email,assignee,assignee_email,task,description,priority,created_at) VALUES("${creator}","${creator_email}","${assignee}","${assignee_email}","${task}","${description}",${priority},"${created_at}")`,null,(err, results, fields) => {
+    connection.query(`INSERT INTO tasks(creator,creator_email,assignee,assignee_email,task,description,status,priority,created_at) VALUES("${creator}","${creator_email}","${assignee}","${assignee_email}","${task}","${description}","${status}",${priority},"${created_at}")`,null,(err, results, fields) => {
         if(err){
             console.log(results);
             throw err;

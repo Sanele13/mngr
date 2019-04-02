@@ -8,12 +8,13 @@ import {HttpService} from "./services/http.service";
 })
 export class AppComponent {
   title = 'mngr-frontend';
-  isLoginForm = false;
+  isLoginForm = true;
   isRegisterForm = false;
-  loggedIn = true;
+  loggedIn = false;
 
   @ViewChild('loginForm') loginForm: ElementRef;
   @ViewChild('registrationForm') regForm: ElementRef;
+  userTasks = {};
 
 
   constructor(
@@ -32,6 +33,7 @@ export class AppComponent {
       if(result['message']=='success'){
         this.isLoginForm = false;
         this.loggedIn = true;
+        this.userTasks = result['tasks'];
       }
     });
   }
@@ -40,7 +42,6 @@ export class AppComponent {
     e.preventDefault();
 
     let form = this.regForm.nativeElement;
-    //console.log(form.email);
     let user_data = {
       first_name: form.first_name.value,
       last_name: form.last_name.value,

@@ -1,6 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {CdkDragDrop, moveItemInArray,transferArrayItem} from "@angular/cdk/drag-drop"
 import {HttpService} from "../services/http.service";
+import {forEach} from "@angular/router/src/utils/collection";
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -11,6 +12,8 @@ export class BoardComponent implements OnInit {
   @ViewChild('toDoColumn') toDoColumn: ElementRef;
   @ViewChild('inProgressColumn') inProgressColumn: ElementRef;
   @ViewChild('doneColumn') doneColumn: ElementRef;
+
+  @Input() tasks;
 
   task: string;
   todo = [];
@@ -65,6 +68,26 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tasks.forEach((element) => {
+      console.log(element.status);
+      switch (element.status){
+        case 'todo':
+          this.todo.push(element);
+          break;
+
+        case 'in_progress':
+          this.in_progress.push(element);
+          break;
+
+        case 'done':
+          this.done.push(element);
+          break;
+
+        default:
+          break;
+      }
+    });
   }
+
 
 }

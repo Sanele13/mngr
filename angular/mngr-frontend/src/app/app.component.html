@@ -38,5 +38,5 @@
     <button type="submit" class="btn btn-success">Register</button>
   </form>
 </div>
-<app-board *ngIf="loggedIn"></app-board>
+<app-board *ngIf="loggedIn" [tasks]="userTasks"></app-board>
 <!--<router-outlet></router-outlet>-->
