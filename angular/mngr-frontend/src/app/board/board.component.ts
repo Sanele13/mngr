@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CdkDragDrop, moveItemInArray,transferArrayItem} from "@angular/cdk/drag-drop"
+import {HttpService} from "../services/http.service";
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -17,6 +18,10 @@ export class BoardComponent implements OnInit {
   in_progress = [];
 
   done = [];
+
+  constructor(
+    private httpService: HttpService
+  ) { }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -50,9 +55,14 @@ export class BoardComponent implements OnInit {
 
       };
       this.todo.push(task_obj);
+      this.httpService.post('/task/create',task_obj).subscribe(result => {
+        if(result['message']=='success'){
+          console.log('task saved!');
+        //  TODO create a popup with the message from backend
+        }
+      });
     }
   }
-  constructor() { }
 
   ngOnInit() {
   }

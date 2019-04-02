@@ -73,14 +73,17 @@ app.post('/register',(request, result) => {
 
 //save task
 app.post('/task/create',(request,response) => {
-    const creator = request.body.task.creator;
-    const assignee = request.body.task.assignee;
-    const task = request.body.task.task;
-    const description = request.body.task.description;
-    const priority = request.body.task.priority;
-    const created_at = request.body.task.created_at;
-    connection.query('INSERT INTO tasks VALUES ?',{creator,assignee,task,description,priority,created_at},(err, results, fields) => {
+    const creator = request.body.creator.name;
+    const creator_email = request.body.creator.email;
+    const assignee = request.body.assignee.name;
+    const assignee_email = request.body.assignee.email;
+    const task = request.body.task;
+    const description = request.body.description;
+    const priority = request.body.priority;
+    const created_at = request.body.created_at;
+    connection.query(`INSERT INTO tasks(creator,creator_email,assignee,assignee_email,task,description,priority,created_at) VALUES("${creator}","${creator_email}","${assignee}","${assignee_email}","${task}","${description}",${priority},"${created_at}")`,null,(err, results, fields) => {
         if(err){
+            console.log(results);
             throw err;
         }else{
             response.send({
