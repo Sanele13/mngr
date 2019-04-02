@@ -33,7 +33,23 @@ export class BoardComponent implements OnInit {
     var task = this.taskField.nativeElement.value;
 
     if(task!==null){
-      this.todo.push(task);
+      let task_obj = {
+        status:'todo',
+        creator:{
+          name:'Sanele Mpangalala',
+          email:'mpnsan005@myuct.ac.za'
+        },
+        assignee: {
+          name:'Kevin Durant',
+          email:'kevin@gsw.com'
+        },
+        task:task,
+        description: null,
+        priority:1,
+        created_at: new Date()
+
+      };
+      this.todo.push(task_obj);
     }
   }
   constructor() { }

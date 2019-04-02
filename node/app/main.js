@@ -11,7 +11,7 @@ var db_creds = {
     password:'mngr',
     port:3306
 };
-
+var connection = mysql.createConnection(db_creds);
 
 var app = express();
 
@@ -30,7 +30,7 @@ app.post('/login',(request, result) => {
     var password = request.body.password;
 
     //check if user exist
-    var connection = mysql.createConnection(db_creds);
+
     connection.connect((err)=>{
        if(err){
            result.send({message:'there-was-an-error'});
@@ -51,7 +51,7 @@ app.post('/register',(request, result) => {
     let last_name = request.body.last_name
 
     let allIsWell = password===password_comfirmation;
-    var connection = mysql.createConnection(db_creds);
+
     connection.connect((err)=>{
         if(err){
             result.send({message:'there-was-an-error'});
@@ -71,6 +71,24 @@ app.post('/register',(request, result) => {
     });
 });
 
+//save task
+app.post('/task/create',(request,response) => {
+    const creator = request.body.task.creator;
+    const assignee = request.body.task.assignee;
+    const task = request.body.task.task;
+    const description = request.body.task.description;
+    const priority = request.body.task.priority;
+    const created_at = request.body.task.created_at;
+    connection.query('INSERT INTO tasks VALUES ?',{creator,assignee,task,description,priority,created_at},(err, results, fields) => {
+        if(err){
+            throw err;
+        }else{
+            response.send({
+                message:'success'
+            });
+        }
+    });
+});
 http.createServer(app).listen(3000  ,function(){
     console.log('app running');
 });

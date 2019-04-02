@@ -2,7 +2,7 @@
   <h2>To do</h2>
 
   <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[inProgressList]" class="example-list" (cdkDropListDropped)="drop($event)" #toDoColumn>
-    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.task}}</div>
   </div>
   <input matInput style="width:70%" placeholder="Enter Task" #taskField>
   <button mat-button (click)="addTask()">Add task</button>
@@ -12,7 +12,7 @@
   <h2>In Progress</h2>
 
   <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="in_progress" [cdkDropListConnectedTo]="[doneList,todoList]" class="example-list" (cdkDropListDropped)="drop($event)" #inProgressColumn>
-    <div class="example-box" *ngFor="let item of in_progress" cdkDrag>{{item}}</div>
+    <div class="example-box" *ngFor="let item of in_progress" cdkDrag>{{item.task}}</div>
   </div>
 </div>
 
@@ -20,6 +20,6 @@
   <h2>Done</h2>
 
   <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[inProgressList]" class="example-list" (cdkDropListDropped)="drop($event)" #doneColumn>
-    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.task}}</div>
   </div>
 </div>
