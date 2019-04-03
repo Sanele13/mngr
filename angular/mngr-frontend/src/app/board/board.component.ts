@@ -30,10 +30,8 @@ export class BoardComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      this.changeTaskStatus(event.container, event.currentIndex);
     }
   }
 
@@ -67,9 +65,23 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  changeTaskStatus(container,index){
+    let container_id = container.element.nativeElement.id;
+
+    switch (container_id){
+      case 'cdk-drop-list-0':
+        this.todo[index].status = 'todo';
+        break;
+      case 'cdk-drop-list-1':
+        this.in_progress[index].status = 'in_progress';
+        break;
+      case 'cdk-drop-list-2':
+        this.done[index].status = 'done';
+        break;
+    }
+  }
   ngOnInit() {
     this.tasks.forEach((element) => {
-      console.log(element.status);
       switch (element.status){
         case 'todo':
           this.todo.push(element);
