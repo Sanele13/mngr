@@ -71,12 +71,21 @@ export class BoardComponent implements OnInit {
     switch (container_id){
       case 'cdk-drop-list-0':
         this.todo[index].status = 'todo';
+        this.httpService.post('/task/update',this.todo[index]).subscribe(result => {
+          console.log(result)
+        });
         break;
       case 'cdk-drop-list-1':
         this.in_progress[index].status = 'in_progress';
+        this.httpService.post('/task/update',this.in_progress[index]).subscribe(result => {
+          console.log(result)
+        });
         break;
       case 'cdk-drop-list-2':
         this.done[index].status = 'done';
+        this.httpService.post('/task/update',this.done[index]).subscribe(result => {
+          console.log(result)
+        });
         break;
     }
   }

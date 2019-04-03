@@ -37,10 +37,15 @@ app.post('/login',(request, result) => {
            result.send({message:'there-was-an-error'});
        }else{
            connection.query('SELECT user_id,first_name,last_name,email FROM users WHERE email = "'+email+'" and password = "'+password+'"',null,(error,results) => {
-
-               connection.query(`SELECT * FROM tasks WHERE assignee_email = "${email}"`,null,(task_err,tasks) => {
-                   result.send({message:'success',tasks:tasks})
-               });
+               if(results.length==0){
+                    result.send({
+                        message:'fail'
+                    });
+               }else{
+                   connection.query(`SELECT * FROM tasks WHERE assignee_email = "${email}"`,null,(task_err,tasks) => {
+                       result.send({message:'success',tasks:tasks})
+                   });
+               }
            });
        }
     });
@@ -96,6 +101,22 @@ app.post('/task/create',(request,response) => {
         }
     });
 });
+
+//update task status
+app.post('/task/update',(request,response) => {
+    const status = request.body.status;
+    const id = request.body.id;
+    connection.query(`UPDATE tasks SET status = "${status}" where id = ${id}`,null,(err,results) => {
+        if(err){
+            throw err;
+        }else{
+            response.send({
+                message:'success'
+            });
+        }
+    });
+});
+
 http.createServer(app).listen(3000  ,function(){
     console.log('app running');
 });
