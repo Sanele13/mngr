@@ -16,13 +16,16 @@ import { FormComponent } from './components/form/form.component'
 
 import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./services/http.service";
+import { TaskPopupComponent } from './components/task-popup/task-popup.component';
+import {MatDialogModule} from "@angular/material";
 
 @NgModule({
   declarations: [
     AppComponent,
     TopbarComponent,
     BoardComponent,
-    FormComponent
+    FormComponent,
+    TaskPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +36,12 @@ import {HttpService} from "./services/http.service";
     MatTabsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatDialogModule,
     DragDropModule,
     HttpClientModule
+  ],
+  entryComponents:[
+    TaskPopupComponent
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

@@ -1,7 +1,14 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {CdkDragDrop, moveItemInArray,transferArrayItem} from "@angular/cdk/drag-drop"
 import {HttpService} from "../services/http.service";
-import {forEach} from "@angular/router/src/utils/collection";
+import {MatDialog} from "@angular/material";
+import {TaskPopupComponent} from "../components/task-popup/task-popup.component";
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -14,7 +21,8 @@ export class BoardComponent implements OnInit {
   @ViewChild('doneColumn') doneColumn: ElementRef;
 
   @Input() tasks;
-
+  name = '';
+  animal = '';
   task: string;
   todo = [];
 
@@ -23,8 +31,21 @@ export class BoardComponent implements OnInit {
   done = [];
 
   constructor(
-    private httpService: HttpService
+    private httpService: HttpService,
+    public dialog: MatDialog
   ) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TaskPopupComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

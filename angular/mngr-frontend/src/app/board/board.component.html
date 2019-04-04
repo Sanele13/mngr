@@ -4,8 +4,8 @@
   <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[inProgressList]" class="example-list" (cdkDropListDropped)="drop($event)" #toDoColumn>
     <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.task}}</div>
   </div>
-  <input matInput style="width:70%" placeholder="Enter Task" #taskField>
-  <button mat-button (click)="addTask()">Add task</button>
+
+  <button (click)="openDialog()">Pick one</button>
 </div>
 
 <div class="example-container">
