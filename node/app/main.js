@@ -117,6 +117,13 @@ app.post('/task/update',(request,response) => {
     });
 });
 
-http.createServer(app).listen(3000  ,function(){
+
+
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+io.on('connection', function(socket){
+    console.log('a user connected');
+});
+server.listen(3000  ,function(){
     console.log('app running');
 });

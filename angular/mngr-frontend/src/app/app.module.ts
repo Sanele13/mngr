@@ -16,13 +16,15 @@ import { FormComponent } from './components/form/form.component'
 
 import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./services/http.service";
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopbarComponent,
     BoardComponent,
-    FormComponent
+    FormComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

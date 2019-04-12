@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {HttpService} from "./services/http.service";
+import {HttpService} from './services/http.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'mngr-frontend';
   isLoginForm = true;
   isRegisterForm = false;
-  loggedIn = false;
+  loggedIn = true;
 
   @ViewChild('loginForm') loginForm: ElementRef;
   @ViewChild('registrationForm') regForm: ElementRef;
@@ -24,7 +24,6 @@ export class AppComponent {
   login(e) {
     e.preventDefault();
     let form = this.loginForm.nativeElement;
-    //console.log()
     let user_data = {
       email:form.username.value,
       password:form.password.value

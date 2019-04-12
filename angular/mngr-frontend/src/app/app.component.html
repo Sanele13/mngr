@@ -1,42 +1,43 @@
 <app-topbar></app-topbar>
-<div *ngIf="isLoginForm" class="login-form-container container col-sm-8 col-md-6">
-  <form method="post" (submit)="login($event)" #loginForm>
-    <div class="form-group">
-      <label for="username">Email:</label>
-      <input id="username" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input id="password" type="password" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-success">Login</button>
-  </form>
-  <span (click)="isRegisterForm=true;isLoginForm=false">Register here</span>
-</div>
-<div *ngIf="isRegisterForm" class="register-form-container container col-md-6 col-sm-8">
-  <form method="post" (submit)="register($event)" #registrationForm>
-    <div class="form-group">
-      <label for="first_name">Name:</label>
-      <input id="first_name" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="last_name">Last Name:</label>
-      <input id="last_name" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input id="email" type="email" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="user_pwd">Password:</label>
-      <input id="user_pwd" type="password" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="conf_pwd">Confirm Password:</label>
-      <input id="conf_pwd" type="password" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-success">Register</button>
-  </form>
-</div>
+<!--<div *ngIf="isLoginForm" class="login-form-container container col-sm-8 col-md-6">-->
+  <!--<form method="post" (submit)="login($event)" #loginForm>-->
+    <!--<div class="form-group">-->
+      <!--<label for="username">Email:</label>-->
+      <!--<input id="username" type="text" class="form-control">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="password">Password:</label>-->
+      <!--<input id="password" type="password" class="form-control">-->
+    <!--</div>-->
+    <!--<button type="submit" class="btn btn-success">Login</button>-->
+  <!--</form>-->
+  <!--<span (click)="isRegisterForm=true;isLoginForm=false">Register here</span>-->
+<!--</div>-->
+<!--<div *ngIf="isRegisterForm" class="register-form-container container col-md-6 col-sm-8">-->
+  <!--<form method="post" (submit)="register($event)" #registrationForm>-->
+    <!--<div class="form-group">-->
+      <!--<label for="first_name">Name:</label>-->
+      <!--<input id="first_name" type="text" class="form-control">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="last_name">Last Name:</label>-->
+      <!--<input id="last_name" type="text" class="form-control">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="email">Email:</label>-->
+      <!--<input id="email" type="email" class="form-control">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="user_pwd">Password:</label>-->
+      <!--<input id="user_pwd" type="password" class="form-control">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="conf_pwd">Confirm Password:</label>-->
+      <!--<input id="conf_pwd" type="password" class="form-control">-->
+    <!--</div>-->
+    <!--<button type="submit" class="btn btn-success">Register</button>-->
+  <!--</form>-->
+<!--</div>-->
 <app-board *ngIf="loggedIn" [tasks]="userTasks"></app-board>
+<app-chat></app-chat>
 <!--<router-outlet></router-outlet>-->
